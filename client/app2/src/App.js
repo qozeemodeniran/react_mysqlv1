@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
+import ListComponent from './ListComponent';
 
 function App() {
   return (
-    <div>
-      <h1>Hello, world!</h1>
+    <div className="App">
+      <ListComponent />
     </div>
   );
 }
