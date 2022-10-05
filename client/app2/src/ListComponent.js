@@ -11,39 +11,26 @@ import "datatables.net-dt/js/dataTables.dataTables"
 import "datatables.net-dt/css/jquery.dataTables.min.css"
 import $ from 'jquery'; 
  
-//For API Requests
-// import axios from 'axios';
- 
 class ListComponent extends React.Component {
- 
-  // State array variable to save and show data
-  constructor(props) {
-    super(props)
-      this.state = {
-        data: [],
-        
-      }}
   componentDidMount() {
-       //Get all users details in bootstrap table
-        // axios.get('http://localhost/react_mysqlv1/server/server.php').then(res => 
-        // {
-        //   //Storing users detail in state array object
-        //   this.setState({data: res.data});
-         
-        // }); 
+
     //initialize datatable
     $(document).ready(function () {
         
         // dynimacally adding row
         var t = $('#example2').DataTable();
-        // var counter = 1;
+        // var counter = 0;
 
-        $('#addRow2').on('click', function () {
-            t.row.add(['Firstname Lastname', 'firstname.lastname@gmail.com']).draw(false);
-        });
+            $('#addRow2').on('click', function () {
+                // t.row.add(['Firstname Lastname', 'firstname.lastname@gmail.com']).draw(); //for single row
 
-        // Automatically include first row
-        // $('#addRow').click();
+                // adding multiple rows by looping
+                for(let i=0; i<500; i++) {
+                    t.rows.add([
+                        ["Firstname Lastname", "first.last@names.com"]
+                    ]).draw();
+                }
+           });
 
         // setting timeout
         setTimeout(function(){
@@ -54,7 +41,7 @@ class ListComponent extends React.Component {
   render(){
     //Datatable HTML
   return (
-    <div className="MainDiv">
+    <div className="MainDiv"> 
       <div className="jumbotron text-center">
           <h3>IT 7131 Project</h3>
       </div>
@@ -62,30 +49,16 @@ class ListComponent extends React.Component {
        
       <div className="container">
           {/* Button to add new table row dynamically */}
-          <button id="addRow2">Add new row</button>
-          <table id="example2" className="table table-hover table-bordered">
+          <button id="addRow2">Add new rows</button>
+          <table id="example2" className="table table-hover table-bordered display">
           <thead>
             <tr>
               <th>Name</th>
               <th>Email</th>
             </tr>
           </thead>
-          <tbody>
-          {this.state.data.map((result, index) => {
-            return (
-              
-                 <tr key={index}>
-                  <td>{result.name}</td>
-                  <td>{result.email}</td>
-                </tr>
-              
-            )
-          })}
-            
-             
-          </tbody>
-        </table>
-           
+          </table>
+          <br /><br /> 
         </div>
       </div>
   );
